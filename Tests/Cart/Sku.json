@@ -1,0 +1,11 @@
+{
+    "id": "12345",
+    "isAvailable": true,
+    "availableQuantity": 4,
+    "price": 45,
+    "discountedPrice": 40,
+    "imageIds": [
+                 "7",
+                 "8"
+                 ]
+}

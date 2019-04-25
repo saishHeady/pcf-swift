@@ -1,0 +1,7 @@
+disabled_rules:
+  - vertical_parameter_alignment
+excluded:
+  - Carthage
+  - Pods
+
+line_length: 120

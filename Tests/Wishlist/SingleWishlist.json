@@ -1,0 +1,11 @@
+{
+  "id": "1",
+  "name": "My Wishlist",
+  "itemCount": 12,
+  "images": [
+    {
+      "url": "http://img.url.jpg",
+      "usage": "small"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+    "id": "1234",
+    "shippingAddress": {
+        "id": "1234",
+        "firstName": "James",
+        "lastName": "Bond",
+        "address1": "10001 Johnson St",
+        "address2": null,
+        "city": "Novato",
+        "state": "CA",
+        "country": "US",
+        "zip": "94949",
+        "phone": "4151515555",
+        "save": true,
+        "isPrimary": false
+    },
+    "shippingOption": {
+        "id": "1",
+        "name": "standard (4-5 days)",
+        "price": 10
+    }
+}

@@ -1,0 +1,8 @@
+{
+  "id": "resort_black",
+  "label": "Resort Black",
+  "imagePattern": {
+      "url": "http://sugartown.scene7.com/is/image/sugartown/resortwhite_swatch?wid=40&hei=40",
+      "usage": "large"
+  }
+}

@@ -1,0 +1,85 @@
+{
+  "mainNavigation": [
+    {
+      "images": [
+        {
+          "url": "http://img.url.jpg",
+          "usage": "small"
+        }
+      ],
+      "text": "Get this awesome thing",
+      "navigation": "myapp://products/PRODUCTID"
+    },
+    {
+      "images": [
+        {
+          "url": "http://img.url.jpg",
+          "usage": "small"
+        }
+      ],
+      "text": "Get this awesome thing",
+      "navigation": "myapp://products/PRODUCTID"
+    }
+  ],
+  "secondaryNavigation": [
+    {
+      "images": [
+        {
+          "url": "http://img.url.secondary.jpg",
+          "usage": "large"
+        }
+      ],
+      "text": "Get this awesome secondary thing",
+      "navigation": "myapp://products/secondary/PRODUCTID"
+    }
+  ],
+  "featuredProducts": [
+    {
+      "id": "1234",
+      "name": "Vera",
+      "price": 45,
+      "discountedPrice": 40,
+      "description": "<p>Gorgeous lace ...",
+      "imageResources": {
+        "1": [
+          {
+            "url": "http://www.url1.jpg",
+            "usage": "thumbnail"
+          },
+          {
+            "url": "http://www.url2.jpg",
+            "usage": "small"
+          },
+          {
+            "url": "http://www.url3.jpg",
+            "usage": "large"
+          }
+        ],
+        "2": [
+          {
+            "url": "http://www.url4.jpg",
+            "usage": "thumbnail"
+          },
+          {
+            "url": "http://www.url6.jpg",
+            "usage": "large"
+          }
+        ]
+      },
+      "imageIds": [
+        "1",
+        "2"
+      ],
+      "categoryIds": [
+        "1",
+        "2",
+        "5"
+      ],
+      "wishlistIds": [
+        "1",
+        "2",
+        "5"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+    "id": "2",
+    "name": "Category 2",
+    "images": [
+               {
+               "url": "http://img.url.jpg",
+               "usage": "small"
+               }
+               ],
+    "parentCategoryIds": [],
+    "tags": [
+             "highlight",
+             "main"
+             ],
+    "subCategoryIds": ["1"]
+}

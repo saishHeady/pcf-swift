@@ -1,0 +1,168 @@
+{
+  "id": "123456",
+  "orderDate": "1997-07-16T19:20:30+01:00",
+  "lastUpdated": "1997-07-16T19:20:30+01:00",
+  "status": {
+    "statusText": "shipped",
+    "trackingNumber": "123456",
+    "deliveryDate": [
+      "2014-07-16",
+      "2014-07-19"
+    ]
+  },
+  "itemCount": 1,
+  "itemTotalCount": 5,
+  "subTotal": 299.99,
+  "tax": 9.88,
+  "totalAdjustment": -100,
+  "total": 199.99,
+  "orderItems": [
+    {
+      "id": "123456",
+      "product": {
+        "id": "1234",
+        "name": "Vera",
+        "price": 45,
+        "discountedPrice": 40,
+        "description": "<p>Gorgeous lace ...",
+        "imageResources": {
+          "1": [
+            {
+              "url": "http://www.url1.jpg",
+              "usage": "thumbnail"
+            },
+            {
+              "url": "http://www.url2.jpg",
+              "usage": "small"
+            },
+            {
+              "url": "http://www.url3.jpg",
+              "usage": "large"
+            }
+          ],
+          "2": [
+            {
+              "url": "http://www.url4.jpg",
+              "usage": "thumbnail"
+            },
+            {
+              "url": "http://www.url6.jpg",
+              "usage": "large"
+            }
+          ]
+        },
+        "imageIds": [
+          "1",
+          "2"
+        ],
+        "categoryIds": [
+          "1",
+          "2",
+          "5"
+        ],
+        "wishlistIds": [
+          "1",
+          "2",
+          "5"
+        ]
+      },
+      "quantity": 5,
+      "sku": {
+        "id": "12345",
+        "isAvailable": true,
+        "availableQuantity": 4,
+        "price": 45,
+        "discountedPrice": 40,
+        "imageIds": [
+          "7",
+          "8"
+        ]
+      },
+      "personalizations": [
+        {
+          "id": "1",
+          "label": "Thread Color",
+          "type": "string",
+          "options": [
+            "Apple",
+            "Wisteria"
+          ],
+          "instructionsUrl": "http://www.url.com"
+        }
+      ],
+      "otherSkusAvailable": true,
+      "adjustments": [
+        {
+          "id": "12345",
+          "type": "coupon",
+          "amount": -9.99,
+          "code": "SOME_CODE",
+          "description": "Save 20% on Furniture"
+        }
+      ],
+      "totalPrice": 1999.95,
+      "totalDiscountedPrice": 1499.95
+    }
+  ],
+    "billingAddress": {
+        "id": "1234",
+        "firstName": "James",
+        "lastName": "Bond",
+        "address1": "10001 Johnson St",
+        "address2": null,
+        "city": "Novato",
+        "state": "CA",
+        "country": "US",
+        "zip": "94949",
+        "phone": "4151515555",
+        "save": true,
+        "isPrimary": false
+    },
+    "shipments": [
+                  {
+                  "id": "1234",
+                  "shippingAddress": {
+                  "id": "1234",
+                  "firstName": "James",
+                  "lastName": "Bond",
+                  "address1": "10001 Johnson St",
+                  "address2": null,
+                  "city": "Novato",
+                  "state": "CA",
+                  "country": "US",
+                  "zip": "94949",
+                  "phone": "4151515555",
+                  "save": true,
+                  "isPrimary": false
+                  },
+                  "shippingOption": {
+                  "id": "1",
+                  "name": "standard (4-5 days)",
+                  "price": 0
+                  }
+                  }
+                  ],
+    "paymentMethods": [
+                       {
+                       "id": "12345",
+                       "type": "card",
+                       "amount": 100,
+                       "paymentObject": {
+                       "number": "************1111",
+                       "cardType": "Visa",
+                       "nameOnCard": "John Snow",
+                       "expirationMonth": 1,
+                       "expirationYear": 2020
+                       }
+                       }
+                       ],
+  "adjustments": [
+    {
+      "id": "12345",
+      "type": "coupon",
+      "amount": -9.99,
+      "code": "SOME_CODE",
+      "description": "Save 20% on Furniture"
+    }
+  ]
+}

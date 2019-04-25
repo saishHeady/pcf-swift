@@ -1,0 +1,22 @@
+[
+  {
+    "id": "123456",
+    "orderDate": "1997-07-16T19:20:30+01:00",
+    "lastUpdated": "1997-07-16T19:20:30+01:00",
+    "status": {
+      "statusText": "shipped",
+      "trackingNumber": "123456",
+      "deliveryDate": [
+        "2014-07-16",
+        "2014-07-19"
+      ]
+    },
+    "trackingNumber": "123456",
+    "itemCount": 1,
+    "itemTotalCount": 5,
+    "subTotal": 299.99,
+    "tax": 9.88,
+    "totalAdjustment": -100,
+    "total": 199.99
+  }
+]

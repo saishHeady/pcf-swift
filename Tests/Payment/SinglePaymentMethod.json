@@ -1,0 +1,12 @@
+{
+    "id": "12345",
+    "type": "card",
+    "amount": 100,
+    "paymentObject": {
+        "number": "************1111",
+        "cardType": "Visa",
+        "nameOnCard": "John Snow",
+        "expirationMonth": 1,
+        "expirationYear": 2020
+    }
+}

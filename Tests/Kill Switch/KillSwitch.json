@@ -1,0 +1,6 @@
+{
+    "apiInactive": false,
+    "forceUpdate": false,
+    "retryInterval": 5.0,
+    "userMessage": "App is killed"
+}
