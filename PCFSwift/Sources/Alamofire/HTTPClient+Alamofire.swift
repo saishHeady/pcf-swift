@@ -17,6 +17,8 @@ public extension HTTPClient {
                           parameters: request.parameters,
                           encoding: JSONEncoding.default,
                           headers: request.headers)
+            .validate()
+            .debugLog()
             .responseJSON { (response: DataResponse<Any>) in
                 if response.result.isSuccess {
                     self.handleSuccessfulResponse(response, completion: completion)
@@ -44,4 +46,13 @@ public extension HTTPClient {
         }
     }
 
+}
+
+extension Request {
+    public func debugLog() -> Self {
+        #if DEBUG
+        debugPrint(self)
+        #endif
+        return self
+    }
 }
