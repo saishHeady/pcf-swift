@@ -18,8 +18,18 @@ public extension HTTPClient {
                           encoding: JSONEncoding.default,
                           headers: request.headers)
             .validate()
-            .debugLog()
             .responseJSON { (response: DataResponse<Any>) in
+                
+                #if DEBUG
+                print("------------------------------------------------------------------")
+                if let headers = request.headers {
+                    print("[Headers]: ")
+                    debugPrint(headers)
+                }
+                debugPrint(response)
+                print("------------------------------------------------------------------")
+                #endif
+                
                 if response.result.isSuccess {
                     self.handleSuccessfulResponse(response, completion: completion)
                 } else {
@@ -46,13 +56,4 @@ public extension HTTPClient {
         }
     }
 
-}
-
-extension Request {
-    public func debugLog() -> Self {
-        #if DEBUG
-        debugPrint(self)
-        #endif
-        return self
-    }
 }
