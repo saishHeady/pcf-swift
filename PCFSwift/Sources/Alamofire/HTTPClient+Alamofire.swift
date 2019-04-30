@@ -18,14 +18,39 @@ public extension HTTPClient {
                           encoding: JSONEncoding.default,
                           headers: request.headers)
             .validate()
-            .debugLog()
             .responseJSON { (response: DataResponse<Any>) in
+                
+                #if DEBUG
+                if let envData = getenv("NETWORK_LOG_ENABLE"),
+                    let networkLogUTF8String = String(utf8String: envData),
+                    let isNetworkLogEnabled = Bool(networkLogUTF8String) {
+                    if isNetworkLogEnabled {
+                        self.debugLog(request: request, response: response)
+                    }
+                } else {
+                    self.debugLog(request: request, response: response)
+                }
+                #endif
+                
                 if response.result.isSuccess {
                     self.handleSuccessfulResponse(response, completion: completion)
                 } else {
                     self.handleUnsuccessfulResponse(response, completion: completion)
                 }
         }
+    }
+    
+    private func debugLog(request: HTTPRequest, response: DataResponse<Any>) {
+        print("------------------------------------------------------------------")
+        if let headers = request.headers {
+            print("[Headers]: ")
+            dump(headers)
+        }
+        print("[Parameter]: ")
+        dump(request.parameters ?? [:])
+        
+        debugPrint(response)
+        print("------------------------------------------------------------------")
     }
 
     private func handleSuccessfulResponse(_ response: DataResponse<Any>,
@@ -46,13 +71,4 @@ public extension HTTPClient {
         }
     }
 
-}
-
-extension Request {
-    public func debugLog() -> Self {
-        #if DEBUG
-        debugPrint(self)
-        #endif
-        return self
-    }
 }
