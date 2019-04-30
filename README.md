@@ -215,6 +215,13 @@ let dataManager = PCFNavigationDataManager(environmentManager: environmentManage
 let interactor = PCFNavigationInteractor(dataManager: dataManager)
 ```
 
+#### Logging
+You can print the request headers and parameters, and response by setting an environment variable in your project. By default logging is enabled in the project even if the environment variable is not set. 
+
+In case, if you want to disable logging, you need to set `NETWORK_LOG_ENABLE` with value `false` to disable logging
+
+![](Assets/project-scheme.png)
+
 ## Business Logic
 PCF includes business logic layers that will speed up the integration process and unify the way we use PCF. For every domain (Cart, Product, Category...) the framework provides a **data manager** and **interactor**.
 
