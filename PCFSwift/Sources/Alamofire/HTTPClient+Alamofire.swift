@@ -9,6 +9,13 @@
 import Alamofire
 
 public extension HTTPClient {
+    
+    func validStatusCodes() -> [Int] {
+        var codes: [Int] = Array(200..<300)
+        // Need to add 403 status code to allow PerimeterX Bot detector to block illegitimate request
+        codes.append(403)
+        return codes
+    }
 
     public func perform(request: HTTPRequest,
                         completion: @escaping (_ response: HTTPResponse?, _ error: Swift.Error?) -> Void) {
@@ -17,7 +24,7 @@ public extension HTTPClient {
                           parameters: request.parameters,
                           encoding: JSONEncoding.default,
                           headers: request.headers)
-            .validate()
+            .validate(statusCode: validStatusCodes())
             .responseJSON { (response: DataResponse<Any>) in
                 
                 #if DEBUG
