@@ -44,14 +44,14 @@ class ErrorTests: XCTestCase {
 
     func testSessionInvalidError() {
         // Given
-        let error = PCFError(code: 1047, message: "The sessionId is invalid.")
+        let error = PCFError(code: 12000, message: "The sessionId is invalid.")
         // Then
         XCTAssertTrue(error.isSessionError())
     }
 
     func testErrorLocalizedDescription() {
         // Given
-        let error = PCFError(code: 1047, message: "The sessionId is invalid.")
+        let error = PCFError(code: 12000, message: "The sessionId is invalid.")
         // When
         let expectedLocalizedDescription = "The sessionId is invalid."
         // Then
