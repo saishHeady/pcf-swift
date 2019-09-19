@@ -8,7 +8,7 @@
 
 private enum SessionErrorCode: Int {
     case inactiveSession = 1002
-    case invalidSession = 1047
+    case invalidSession = 12000
 }
 
 /**
