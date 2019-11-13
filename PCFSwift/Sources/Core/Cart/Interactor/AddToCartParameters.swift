@@ -46,7 +46,7 @@ public struct AddToCartParameters: ParameterConvertible {
             "quantity": quantity,
             "sku": ["id": skuId],
             "personalizations": personalizations.map { $0.toParameters() },
-            "customerId": customerId
+            "customerId": customerId as Any
         ]
     }
 

@@ -88,7 +88,7 @@ public extension PCFProduct {
         case tags
     }
 
-    public init(from decoder: Swift.Decoder) throws {
+    init(from decoder: Swift.Decoder) throws {
         let productContainer = try decoder.container(keyedBy: ProductCodingKeys.self)
 
         resourceId = try productContainer.decode(String.self, forKey: .resourceId)

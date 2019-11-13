@@ -38,7 +38,7 @@ public extension PCFWishlist {
         case images
     }
 
-    public init(from decoder: Swift.Decoder) throws {
+    init(from decoder: Swift.Decoder) throws {
         let wishlistContainer = try decoder.container(keyedBy: WishlistCodingKeys.self)
 
         resourceId = try wishlistContainer.decode(String.self, forKey: .resourceId)

@@ -46,7 +46,7 @@ public extension PCFCategory {
         case subCategoryIds
     }
 
-    public init(from decoder: Swift.Decoder) throws {
+    init(from decoder: Swift.Decoder) throws {
         let categoryContainer = try decoder.container(keyedBy: CategoryCodingKeys.self)
 
         resourceId = try categoryContainer.decode(String.self, forKey: .resourceId)

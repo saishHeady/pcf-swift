@@ -83,7 +83,7 @@ public protocol Product {
 
 public extension Product {
 
-    public func imageURLs(usage: String) -> [URL] {
+    func imageURLs(usage: String) -> [URL] {
         var urls: [URL] = []
 
         if let sortedKeys = self.imageResources?.keys.sorted() {
@@ -97,7 +97,7 @@ public extension Product {
         return urls
     }
 
-    public func imageURL(withImageId imageId: String, usage: String) -> URL? {
+    func imageURL(withImageId imageId: String, usage: String) -> URL? {
         let resource = imageResources?[imageId]
 
         guard let imageResource = resource else {

@@ -28,7 +28,7 @@ public extension PCFCountry {
         case name
     }
 
-    public init(from decoder: Swift.Decoder) throws {
+    init(from decoder: Swift.Decoder) throws {
         let countryContainer = try decoder.container(keyedBy: CountryCodingKeys.self)
 
         resourceId = try countryContainer.decode(String.self, forKey: .resourceId)

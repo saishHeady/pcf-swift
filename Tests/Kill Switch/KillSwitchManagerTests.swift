@@ -42,15 +42,15 @@ class KillSwitchManagerTests: XCTestCase {
     func testKillSwitchManagerCreation() {
         XCTAssertNotNil(killSwitchManager.httpClient)
         XCTAssertNotNil(killSwitchManager.httpRequest)
-        XCTAssertNotNil(killSwitchManager.killSwitch.delegate)
-        XCTAssertNotNil(killSwitchManager.killSwitch.killSwitchView)
+        XCTAssertNotNil(killSwitchManager.killSwitch)
     }
 
     func testKillSwitch_whenAppStatusGetsBack() {
         let exp = expectation(description: "Kill Switch status result")
         killSwitchManager.checkAppStatus()
 
-        killSwitchManager.bellerophonStatus(killSwitchManager.killSwitch) { (status, error) in
+        XCTAssertNotNil(killSwitchManager.killSwitch)
+        killSwitchManager.bellerophonStatus(killSwitchManager.killSwitch!) { (status, error) in
             XCTAssertNotNil(status)
             XCTAssertNil(error)
             exp.fulfill()
@@ -77,7 +77,8 @@ class KillSwitchManagerTests: XCTestCase {
         let exp = expectation(description: "Kill Switch status result")
         killSwitchManager.checkAppStatus()
 
-        killSwitchManager.bellerophonStatus(killSwitchManager.killSwitch) { (status, error) in
+        XCTAssertNotNil(killSwitchManager.killSwitch)
+        killSwitchManager.bellerophonStatus(killSwitchManager.killSwitch!) { (status, error) in
             XCTAssertNil(status)
             XCTAssertNotNil(error)
             exp.fulfill()
@@ -104,7 +105,8 @@ class KillSwitchManagerTests: XCTestCase {
         let exp = expectation(description: "Kill Switch status result")
         killSwitchManager.checkAppStatus()
 
-        killSwitchManager.bellerophonStatus(killSwitchManager.killSwitch) { (status, error) in
+        XCTAssertNotNil(killSwitchManager.killSwitch)
+        killSwitchManager.bellerophonStatus(killSwitchManager.killSwitch!) { (status, error) in
             XCTAssertNil(status)
             XCTAssertNotNil(error)
             exp.fulfill()
@@ -131,7 +133,8 @@ class KillSwitchManagerTests: XCTestCase {
         let exp = expectation(description: "Kill Switch status result")
         killSwitchManager.checkAppStatus()
 
-        killSwitchManager.bellerophonStatus(killSwitchManager.killSwitch) { (status, error) in
+        XCTAssertNotNil(killSwitchManager.killSwitch)
+        killSwitchManager.bellerophonStatus(killSwitchManager.killSwitch!) { (status, error) in
             XCTAssertNotNil(status)
             XCTAssertNil(error)
             exp.fulfill()

@@ -15,7 +15,7 @@ final class LoggingCartInteractor: CartInteractor<PCFCart, PCFOrderDetail, PCFSh
     var wasUpdateCalled = false
     var parametersForUpdateCall: [ParameterConvertible] = []
 
-    override open func update(items: [ParameterConvertible], completion: @escaping (PCFCart?, Swift.Error?) -> Void) {
+    override public func update(items: [ParameterConvertible], completion: @escaping (PCFCart?, Swift.Error?) -> Void) {
         super.update(items: items) { [weak self] (cart, error) in
             self!.wasUpdateCalled = true
             self!.parametersForUpdateCall = items

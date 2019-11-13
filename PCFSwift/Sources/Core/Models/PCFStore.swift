@@ -40,7 +40,7 @@ public extension PCFStore {
         case longitude
     }
 
-    public init(from decoder: Swift.Decoder) throws {
+    init(from decoder: Swift.Decoder) throws {
         let storeContainer = try decoder.container(keyedBy: StoreCodingKeys.self)
 
         resourceId = try storeContainer.decode(String.self, forKey: .resourceId)

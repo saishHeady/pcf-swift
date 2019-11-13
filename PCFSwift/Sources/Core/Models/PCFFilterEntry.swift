@@ -35,7 +35,7 @@ public extension PCFFilterEntry {
         case isSelected
     }
 
-    public init(from decoder: Swift.Decoder) throws {
+    init(from decoder: Swift.Decoder) throws {
         let filterEntryContainer = try decoder.container(keyedBy: FilterEntryCodingKeys.self)
 
         value = try filterEntryContainer.decode(String.self, forKey: .value)

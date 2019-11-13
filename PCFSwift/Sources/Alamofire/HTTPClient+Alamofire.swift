@@ -34,21 +34,17 @@ public extension HTTPClient {
                     let networkLogUTF8String = String(utf8String: envData),
                     let isNetworkLogEnabled = Bool(networkLogUTF8String) {
                     if isNetworkLogEnabled {
-                        debugPrint("-------------------------------------------------------------------------")
-                        debugPrint(response.debugDescription)
-                        debugPrint("-------------------------------------------------------------------------")
-//                        self.debugLog(request: request, response: response)
+                        self.debugLog(request: request, response: response)
                     }
                 } else {
-                    response.debugDescription
-//                    self.debugLog(request: request, response: response)
+                    self.debugLog(request: request, response: response)
                 }
                 #endif
                 
                 switch response.result {
-                case .success(let _):
+                case .success:
                     self.handleSuccessfulResponse(response, completion: completion)
-                case .failure(let error):
+                case .failure:
                     self.handleUnsuccessfulResponse(response, completion: completion)
                 }
         }

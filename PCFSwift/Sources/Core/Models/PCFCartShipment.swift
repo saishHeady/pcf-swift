@@ -33,7 +33,7 @@ public extension PCFCartShipment {
         case shippingOption
     }
 
-    public init(from decoder: Swift.Decoder) throws {
+    init(from decoder: Swift.Decoder) throws {
         let cartShipmentContainer = try decoder.container(keyedBy: CartShipmentCodingKeys.self)
 
         resourceId = try cartShipmentContainer.decode(String.self, forKey: .resourceId)

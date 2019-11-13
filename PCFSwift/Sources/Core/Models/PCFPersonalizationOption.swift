@@ -46,7 +46,7 @@ public extension PCFPersonalizationOption {
         case selectedValue
     }
 
-    public init(from decoder: Swift.Decoder) throws {
+    init(from decoder: Swift.Decoder) throws {
         let personalizationOptionContainer = try decoder.container(keyedBy: PersonalizationOptionCodingKeys.self)
 
         resourceId = try personalizationOptionContainer.decode(String.self, forKey: .resourceId)

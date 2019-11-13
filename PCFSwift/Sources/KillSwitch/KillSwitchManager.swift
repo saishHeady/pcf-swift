@@ -85,8 +85,8 @@ public class KillSwitchManager: BellerophonManagerDelegate {
                     let model = try JSONDecoder().decode(KillSwitchModel.self, from: data)
                     completion(model, nil)
                     return
-                } catch {
-                    completion(nil, error as? Error)
+                } catch let exception {
+                    completion(nil, exception)
                     return
                 }
             }

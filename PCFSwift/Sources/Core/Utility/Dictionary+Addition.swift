@@ -13,7 +13,7 @@ public extension Dictionary {
     /// - Parameters:
     /// - dict: Dictionary to add
     /// - Returns: Result of adding dict's (key, value) pairs to self
-    public func combineWith<Key: Hashable, Value>(_ dict: [Key: Value]) -> [Key: Value] {
+    func combineWith<Key: Hashable, Value>(_ dict: [Key: Value]) -> [Key: Value] {
         var result = dict
 
         for (key, value) in self {

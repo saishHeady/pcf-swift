@@ -66,22 +66,24 @@ public extension PCFOrderDetail {
         case billingAddress
     }
 
-    public init(from decoder: Swift.Decoder) throws {
+    init(from decoder: Swift.Decoder) throws {
         let orderDetailContainer = try decoder.container(keyedBy: OrderDetailCodingKeys.self)
 
         resourceId = try orderDetailContainer.decode(String.self, forKey: .resourceId)
 
         let orderDateString = try orderDetailContainer.decode(String.self, forKey: .orderDate)
         guard let orderDateValue = PCFOrderDetail.dateFormatter().date(from: orderDateString) else {
-            throw Swift.DecodingError.typeMismatch(Date.self, DecodingError.Context(codingPath: [OrderDetailCodingKeys.orderDate],
-                                                                                    debugDescription: "Unable to decode date"))
+            throw Swift.DecodingError.typeMismatch(Date.self,
+                                                   DecodingError.Context(codingPath: [OrderDetailCodingKeys.orderDate],
+                                                                         debugDescription: "Unable to decode date"))
         }
 
         orderDate = orderDateValue
 
         let lastUpdatedString = try orderDetailContainer.decode(String.self, forKey: .lastUpdated)
         guard let lastUpdatedValue = PCFOrderDetail.dateFormatter().date(from: lastUpdatedString) else {
-            throw Swift.DecodingError.typeMismatch(Date.self, DecodingError.Context(codingPath: [OrderDetailCodingKeys.lastUpdated],
+            throw Swift.DecodingError.typeMismatch(Date.self,
+                                                   DecodingError.Context(codingPath: [OrderDetailCodingKeys.lastUpdated],
                                                                                     debugDescription: "Unable to decode date"))
         }
 

@@ -158,7 +158,7 @@ public extension WishlistInteractor {
     }
 
     func wishlistState(forProductId productId: String) -> WishlistItemState {
-        if let index = wishlistItems.index(where: { $0.resourceId == productId }) {
+        if let index = wishlistItems.firstIndex(where: { $0.resourceId == productId }) {
             let item = wishlistItems[index]
             return item.state
         }
