@@ -25,21 +25,23 @@ class KillSwitchModel: BellerophonObservable, Swift.Decodable {
 
     // MARK: - BellerophonObservable Functions
 
-    @objc func apiInactive() -> Bool {
+    func apiInactive() -> Bool {
         return isAPIInactive
     }
 
-    @objc func forceUpdate() -> Bool {
+    func forceUpdate() -> Bool {
         return shouldForceUpdate
     }
 
-    @objc func retryInterval() -> TimeInterval {
+    func retryInterval() -> TimeInterval {
         return interval
     }
 
-    @objc func userMessage() -> String {
+    func userMessage() -> String {
         return userMessageString
     }
+    
+    func setUserMessage(_ message: String) { }
 
     // MARK: - Swift.Decodable
 

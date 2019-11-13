@@ -1,6 +1,6 @@
 use_frameworks!
 podspec :path => 'PCFSwift.podspec'
-platform :ios, '9.0'
+platform :ios, '10.0'
 
 def shared_pods
 	pod 'PCFSwift', :path => './'
