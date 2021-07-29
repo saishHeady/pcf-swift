@@ -64,6 +64,9 @@ public struct PCFProduct: Product, Swift.Decodable {
 
     /// Collection of tags associated to the product.
     public let tags: [String]?
+    
+    /// Brand name of the product.
+    public let brand: String?
 
 }
 
@@ -86,6 +89,7 @@ public extension PCFProduct {
         case userReviews
         case userImageIds
         case tags
+        case brand
     }
 
     init(from decoder: Swift.Decoder) throws {
@@ -105,6 +109,7 @@ public extension PCFProduct {
         userReviews = try productContainer.decodeIfPresent(UserReviewType.self, forKey: .userReviews)
         userImageIds = try productContainer.decodeIfPresent([String].self, forKey: .userImageIds)
         tags = try productContainer.decodeIfPresent([String].self, forKey: .tags)
+        brand = try productContainer.decodeIfPresent(String.self, forKey: .brand)
 
     }
 
