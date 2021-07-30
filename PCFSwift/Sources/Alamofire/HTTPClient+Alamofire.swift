@@ -17,15 +17,17 @@ public extension HTTPClient {
         return codes
     }
 
-    public func perform(request: HTTPRequest,
-                        completion: @escaping (_ response: HTTPResponse?, _ error: Swift.Error?) -> Void) {
-        Alamofire.request(request.endpoint,
-                          method: request.method.alamofireMethod,
-                          parameters: request.parameters,
-                          encoding: JSONEncoding.default,
-                          headers: request.headers)
+    func perform(request: HTTPRequest,
+                 completion: @escaping (_ response: HTTPResponse?, _ error: Swift.Error?) -> Void) {
+        
+        AF.request(request.endpoint,
+                   method: request.method.alamofireMethod,
+                   parameters: request.parameters,
+                   encoding: JSONEncoding.default,
+                   headers: HTTPHeaders(request.headers ?? [:]),
+                   interceptor: nil)
             .validate(statusCode: validStatusCodes())
-            .responseJSON { (response: DataResponse<Any>) in
+            .responseJSON { (response: AFDataResponse<Any>) in
                 
                 #if DEBUG
                 if let envData = getenv("NETWORK_LOG_ENABLE"),
@@ -39,15 +41,17 @@ public extension HTTPClient {
                 }
                 #endif
                 
-                if response.result.isSuccess {
+                switch response.result {
+                case .success:
                     self.handleSuccessfulResponse(response, completion: completion)
-                } else {
+                case .failure:
                     self.handleUnsuccessfulResponse(response, completion: completion)
                 }
         }
+        
     }
     
-    private func debugLog(request: HTTPRequest, response: DataResponse<Any>) {
+    private func debugLog(request: HTTPRequest, response: AFDataResponse<Any>) {
         print("------------------------------------------------------------------")
         if let headers = request.headers {
             print("[Headers]: ")
@@ -60,19 +64,20 @@ public extension HTTPClient {
         print("------------------------------------------------------------------")
     }
 
-    private func handleSuccessfulResponse(_ response: DataResponse<Any>,
+    private func handleSuccessfulResponse(_ response:  AFDataResponse<Any>,
                                           completion: @escaping (HTTPResponse?, Swift.Error?) -> Void) {
-        let httpResponse = HTTPResponse(data: response.data,
+        
+        let httpResponse = HTTPResponse(data: response.data as Any,
                                         statusCode: response.response?.statusCode)
         completion(httpResponse, response.error)
     }
 
-    private func handleUnsuccessfulResponse(_ response: DataResponse<Any>,
+    private func handleUnsuccessfulResponse(_ response: AFDataResponse<Any>,
                                             completion: @escaping (HTTPResponse?, Swift.Error?) -> Void) {
         if let responseData = response.data {
             completion(nil, try? JSONDecoder().decode(PCFError.self, from: responseData))
         } else {
-            let httpResponse = HTTPResponse(data: response.data,
+            let httpResponse = HTTPResponse(data: response.data as Any,
                                             statusCode: response.response?.statusCode)
             completion(httpResponse, response.error)
         }

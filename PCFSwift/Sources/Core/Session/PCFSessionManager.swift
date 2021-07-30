@@ -52,10 +52,15 @@ open class PCFSessionManager: SessionManager {
         httpClient.perform(request: request) { (response, error) in
             if let error = error {
                 completion(nil, PCFError(code: 1, message: error.localizedDescription))
-            } else if
-                let data = response?.data as? Data,
-                let json = try? JSONSerialization.jsonObject(with: data, options: .allowFragments) as? JSON {
-                completion(json?[self.sessionIdKey] as? String, nil)
+            } else if let data = response?.data as? Data {
+                do {
+                    if let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? JSON,
+                        let sessionId = json[self.sessionIdKey] as? String {
+                        completion(sessionId, nil)
+                    }
+                } catch {
+                    completion(nil, PCFError.invalidJSON)
+                }
             } else {
                 completion(nil, PCFError.invalidJSON)
             }

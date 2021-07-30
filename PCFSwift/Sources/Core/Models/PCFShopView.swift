@@ -35,7 +35,7 @@ public extension PCFShopView {
         case featuredProducts
     }
 
-    public init(from decoder: Swift.Decoder) throws {
+    init(from decoder: Swift.Decoder) throws {
         let shopViewContainer = try decoder.container(keyedBy: ShopViewCodingKeys.self)
 
         mainNavigation = try shopViewContainer.decodeIfPresent([NavigationItemType].self, forKey: .mainNavigation) ?? []

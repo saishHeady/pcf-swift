@@ -42,7 +42,7 @@ public extension PCFOrderStatus {
         case deliveryDate
     }
 
-    public init(from decoder: Swift.Decoder) throws {
+    init(from decoder: Swift.Decoder) throws {
         let orderStatusContainer = try decoder.container(keyedBy: OrderStatusCodingKeys.self)
 
         statusText = try orderStatusContainer.decode(String.self, forKey: .statusText)

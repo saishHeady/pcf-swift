@@ -61,7 +61,7 @@ public extension PCFPaymentMethod {
         case amount
     }
 
-    public init(from decoder: Swift.Decoder) throws {
+    init(from decoder: Swift.Decoder) throws {
         let paymentMethodContainer = try decoder.container(keyedBy: PaymentMethodCodingKeys.self)
 
         resourceId = try paymentMethodContainer.decode(String.self, forKey: .resourceId)

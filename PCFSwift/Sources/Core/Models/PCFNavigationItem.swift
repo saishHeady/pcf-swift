@@ -35,7 +35,7 @@ public extension PCFNavigationItem {
         case text
     }
 
-    public init(from decoder: Swift.Decoder) throws {
+    init(from decoder: Swift.Decoder) throws {
         let navigationContainer = try decoder.container(keyedBy: NavigationItemCodingKeys.self)
 
         navigation = try navigationContainer.decode(String.self, forKey: .navigation)

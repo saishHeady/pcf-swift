@@ -12,7 +12,7 @@ open class PCFDateFormatter {
     /**
      Single instance of **NSDateFormatter**.
      */
-    open static let sharedInstance = DateFormatter()
+    public static let sharedInstance = DateFormatter()
 
     fileprivate init() { }
 

@@ -48,7 +48,7 @@ public extension PCFColor {
         case imagePattern
     }
 
-    public init(from decoder: Swift.Decoder) throws {
+    init(from decoder: Swift.Decoder) throws {
         let colorContainer = try decoder.container(keyedBy: ColorCodingKeys.self)
 
         resourceId = try colorContainer.decode(String.self, forKey: .resourceId)

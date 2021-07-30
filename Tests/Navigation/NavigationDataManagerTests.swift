@@ -35,7 +35,7 @@ internal final class NavigationDataManagerTests: BaseTestDataManager {
                 return
             }
 
-            let responseCategoryIds = categories.flatMap { cat -> String? in
+            let responseCategoryIds = categories.compactMap { cat -> String? in
                 cat.resourceId
             }
 

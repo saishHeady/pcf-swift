@@ -32,7 +32,7 @@ public extension PCFShippingOption {
         case price
     }
 
-    public init(from decoder: Swift.Decoder) throws {
+    init(from decoder: Swift.Decoder) throws {
         let shippingOptionContainer = try decoder.container(keyedBy: ShippingOptionCodingKeys.self)
 
         resourceId = try shippingOptionContainer.decode(String.self, forKey: .resourceId)

@@ -110,7 +110,7 @@ public extension PCFAddress {
         case isPrimary
     }
 
-    public init(from decoder: Swift.Decoder) throws {
+    init(from decoder: Swift.Decoder) throws {
         let addressContainer = try decoder.container(keyedBy: AddressCodingKeys.self)
 
         resourceId = try addressContainer.decode(String.self, forKey: .resourceId)

@@ -19,8 +19,9 @@ public class KillSwitchManager: BellerophonManagerDelegate {
     let httpRequest: HTTPRequest
 
     /// The kill switch manager from the SDK.
-    let killSwitch: BellerophonManager
-
+    var killSwitch: BellerophonManager?
+    
+    /// The error handler.
     let errorHandler: (NSError) -> Void
 
     /// Initializes the kill switch manager.
@@ -38,56 +39,71 @@ public class KillSwitchManager: BellerophonManagerDelegate {
         self.httpClient = httpClient
         self.httpRequest = httpRequest
         self.errorHandler = errorHandler
-
-        killSwitch = BellerophonManager(window: window)
-        killSwitch.delegate = self
-        killSwitch.killSwitchView = killSwitchView
+        setupKillSwitch(window: window, killSwitchView: killSwitchView)
     }
-
+    
     /// Check the current app status. Will detect if the app is inactive or needs to update.
+    @objc
     public func checkAppStatus() {
-        killSwitch.checkAppStatus()
+        killSwitch?.checkAppStatus()
     }
 
     /// Use this function to retrieve and handle app status when the app has background mode enabled.
     ///
     /// - Parameter completionHandler: The background fetch completion handler.
+    @objc
     public func fetchAppStatus(_ completionHandler: @escaping (_ result: UIBackgroundFetchResult) -> Void) {
-        killSwitch.fetchAppStatus(completionHandler)
+        killSwitch?.fetchAppStatus(completionHandler)
     }
 
     // MARK: - BellerophonManagerDelegate Functions
 
+    @objc
+    public func shouldForceUpdate() {
+        let siren = Siren.shared
+//        siren.alertType = .force
+//        siren.checkVersion(checkType: .immediately)
+        siren.wail()
+    }
+
+    @objc
+    public func receivedError(error: NSError) {
+        errorHandler(error)
+    }
+    
     public func bellerophonStatus(_ manager: BellerophonManager,
-                                  completion: @escaping (_ status: BellerophonObservable?, _ error: NSError?) -> Void) {
+                                  completion: @escaping (BellerophonObservable?, Swift.Error?) -> Void) {
         httpClient.perform(request: httpRequest) { (response, error) in
-            if let error = error as NSError? {
+            if let error = error as? Error {
                 completion(nil, error)
             } else {
                 guard let data = response?.data as? Data else {
-                    completion(nil, PCFError.invalidJSON as NSError)
+                    completion(nil, PCFError.invalidJSON)
                     return
                 }
                 do {
                     let model = try JSONDecoder().decode(KillSwitchModel.self, from: data)
                     completion(model, nil)
                     return
-                } catch {
-                    completion(nil, error as NSError)
+                } catch let exception {
+                    completion(nil, exception)
                     return
                 }
             }
         }
     }
 
-    public func shouldForceUpdate() {
-        let siren = Siren.shared
-        siren.alertType = .force
-        siren.checkVersion(checkType: .immediately)
+    // MARK: - Private functions
+    
+    /// Sets up the kill switch manager of the sdk
+    /// - Parameters:
+    ///   - window: Window
+    ///   - killSwitchView: The view ro display on killswitch
+    private func setupKillSwitch(window: UIWindow, killSwitchView: UIView) {
+        let bellaroPhonConfig = BellerophonConfig(window: window,
+                                                  killSwitchView: killSwitchView,
+                                                  forceUpdateView: nil,
+                                                  delegate: self)
+        killSwitch = BellerophonManager(config: bellaroPhonConfig)
     }
-
-    public func receivedError(error: NSError) {
-        errorHandler(error)
-    }
-
 }

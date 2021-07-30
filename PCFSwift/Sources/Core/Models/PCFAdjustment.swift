@@ -40,7 +40,7 @@ public extension PCFAdjustment {
         case type
     }
 
-    public init(from decoder: Swift.Decoder) throws {
+    init(from decoder: Swift.Decoder) throws {
         let adjustmentContainer = try decoder.container(keyedBy: AdjustmentCodingKeys.self)
 
         resourceId = try adjustmentContainer.decode(String.self, forKey: .resourceId)

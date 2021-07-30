@@ -40,7 +40,7 @@ public extension PCFProductSearch {
         case sortOptions
     }
 
-    public init(from decoder: Swift.Decoder) throws {
+    init(from decoder: Swift.Decoder) throws {
         let productSearchContainer = try decoder.container(keyedBy: ProductSearchCodingKeys.self)
 
         products = try productSearchContainer.decodeIfPresent([ProductType].self, forKey: .products) ?? []

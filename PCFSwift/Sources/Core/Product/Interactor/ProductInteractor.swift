@@ -45,7 +45,7 @@ open class ProductInteractor<ProductType: Product & Swift.Decodable, SkuType: Sk
     }
 
     private func allSizes(forSKUs skus: [ProductType.SkuType]?) -> [Size] {
-        guard let sizes = skus?.flatMap({ $0.size }) else {
+        guard let sizes = skus?.compactMap({ $0.size }) else {
             return []
         }
 
@@ -53,7 +53,7 @@ open class ProductInteractor<ProductType: Product & Swift.Decodable, SkuType: Sk
     }
 
     private func allColors(forSKUs skus: [ProductType.SkuType]?) -> [ProductType.SkuType.ColorType] {
-        guard let colors = skus?.flatMap({ $0.color }) else {
+        guard let colors = skus?.compactMap({ $0.color }) else {
             return []
         }
 
@@ -107,7 +107,7 @@ open class ProductInteractor<ProductType: Product & Swift.Decodable, SkuType: Sk
 
         if let availableSizes = product?.skus?
             .filter({ $0.color?.resourceId == color.resourceId && $0.isAvailable })
-            .flatMap({ $0.size }) {
+            .compactMap({ $0.size }) {
             let uniqueAvailableSizes = availableSizes.uniqueElements()
             return uniqueAvailableSizes
         }
@@ -126,7 +126,7 @@ open class ProductInteractor<ProductType: Product & Swift.Decodable, SkuType: Sk
 
         if let availableColors = product?.skus?
             .filter({ $0.size == size && $0.isAvailable })
-            .flatMap({ $0.color }) {
+            .compactMap({ $0.color }) {
             let uniqueAvailableColors = availableColors.uniqueElements()
             return uniqueAvailableColors
         }

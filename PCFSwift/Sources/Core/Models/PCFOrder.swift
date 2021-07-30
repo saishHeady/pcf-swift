@@ -73,7 +73,7 @@ public extension PCFOrder {
         case total
     }
 
-    public init(from decoder: Swift.Decoder) throws {
+    init(from decoder: Swift.Decoder) throws {
         let orderContainer = try decoder.container(keyedBy: OrderCodingKeys.self)
 
         resourceId = try orderContainer.decode(String.self, forKey: .resourceId)

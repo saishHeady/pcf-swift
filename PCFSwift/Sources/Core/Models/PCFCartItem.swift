@@ -61,7 +61,7 @@ public extension PCFCartItem {
         case totalPrice
     }
 
-    public init(from decoder: Swift.Decoder) throws {
+    init(from decoder: Swift.Decoder) throws {
         let cartItemContainer = try decoder.container(keyedBy: CartItemCodingKeys.self)
 
         adjustments = try cartItemContainer.decodeIfPresent([AdjustmentType].self, forKey: .adjustments) ?? []

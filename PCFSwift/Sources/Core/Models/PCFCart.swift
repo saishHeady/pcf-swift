@@ -114,7 +114,7 @@ public extension PCFCart {
         case customerInformation
     }
 
-    public init(from decoder: Swift.Decoder) throws {
+    init(from decoder: Swift.Decoder) throws {
         let cartContainer = try decoder.container(keyedBy: CartCodingKeys.self)
 
         adjustments = try cartContainer.decodeIfPresent([AdjustmentType].self, forKey: .adjustments) ?? []

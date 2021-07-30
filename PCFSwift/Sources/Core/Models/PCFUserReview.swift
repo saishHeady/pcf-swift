@@ -30,7 +30,7 @@ public extension PCFUserReview {
         case maxRating = "maxRating"
     }
 
-    public init(from decoder: Swift.Decoder) throws {
+    init(from decoder: Swift.Decoder) throws {
         let userReviewContainer = try decoder.container(keyedBy: UserReviewCodingKeys.self)
 
         reviewCount = try userReviewContainer.decodeIfPresent(Int.self, forKey: .reviewCount)

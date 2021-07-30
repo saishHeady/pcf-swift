@@ -61,7 +61,7 @@ public extension PCFSku {
         case style
     }
 
-    public init(from decoder: Swift.Decoder) throws {
+    init(from decoder: Swift.Decoder) throws {
         let skuContainer = try decoder.container(keyedBy: SkuCodingKeys.self)
 
         resourceId = try skuContainer.decode(String.self, forKey: .resourceId)

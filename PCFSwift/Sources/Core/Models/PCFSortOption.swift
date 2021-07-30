@@ -29,7 +29,7 @@ public extension PCFSortOption {
         case isSelected
     }
 
-    public init(from decoder: Swift.Decoder) throws {
+    init(from decoder: Swift.Decoder) throws {
         let sortOptionContainer = try decoder.container(keyedBy: SortOptionCodingKeys.self)
 
         label = try sortOptionContainer.decode(String.self, forKey: .label)

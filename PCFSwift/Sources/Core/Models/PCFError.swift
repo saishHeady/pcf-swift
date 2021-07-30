@@ -33,7 +33,7 @@ public struct PCFError: Error, Swift.Decodable {
 public extension PCFError {
 
     /// Error for mal-formatted JSON, such as receiving arrays when expecting dictionaries as response.
-    public static var invalidJSON: PCFError {
+    static var invalidJSON: PCFError {
         return PCFError(code: -1, message: "Invalid JSON response")
     }
 

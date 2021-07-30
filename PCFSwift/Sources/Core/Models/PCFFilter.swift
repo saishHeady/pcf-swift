@@ -38,7 +38,7 @@ public extension PCFFilter {
         case allowsMultipleSelections = "isMultiSelect"
     }
 
-    public init(from decoder: Swift.Decoder) throws {
+    init(from decoder: Swift.Decoder) throws {
         let filterContainer = try decoder.container(keyedBy: FilterCodingKeys.self)
 
         resourceId = try filterContainer.decode(String.self, forKey: .resourceId)
