@@ -42,6 +42,9 @@ public struct PCFCartItem: CartItem, Swift.Decodable {
 
     /// Product price times quantity
     public let totalPrice: Float
+    
+    /// Master ID of the product.
+    public var masterId: String?
 
 }
 
@@ -59,6 +62,7 @@ public extension PCFCartItem {
         case sku
         case totalDiscountedPrice
         case totalPrice
+        case masterId
     }
 
     init(from decoder: Swift.Decoder) throws {
@@ -73,6 +77,7 @@ public extension PCFCartItem {
         sku = try cartItemContainer.decodeIfPresent(SkuType.self, forKey: .sku)
         totalDiscountedPrice = try cartItemContainer.decodeIfPresent(Float.self, forKey: .totalDiscountedPrice)
         totalPrice = try cartItemContainer.decode(Float.self, forKey: .totalPrice)
+        masterId = try cartItemContainer.decodeIfPresent(String.self, forKey: .masterId)
     }
 
 }
