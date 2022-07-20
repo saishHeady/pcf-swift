@@ -47,6 +47,12 @@ public struct PCFOrder: Order, Swift.Decodable {
 
     /// The order total.
     public let total: Float
+    
+    /// The State tax.
+    public let stateTax: Float?
+    
+    /// The State 
+    public let stateTaxLabel: String?
 
     fileprivate static func dateFormatter() -> DateFormatter {
         let dateFormatter = PCFDateFormatter.sharedInstance
@@ -71,6 +77,8 @@ public extension PCFOrder {
         case tax
         case totalAdjustment
         case total
+        case stateTax
+        case stateTaxLabel
     }
 
     init(from decoder: Swift.Decoder) throws {
@@ -99,6 +107,8 @@ public extension PCFOrder {
         tax = try orderContainer.decode(Float.self, forKey: .tax)
         totalAdjustment = try orderContainer.decode(Float.self, forKey: .totalAdjustment)
         total = try orderContainer.decode(Float.self, forKey: .total)
+        stateTax = try orderContainer.decode(Float.self, forKey: .stateTax)
+        stateTaxLabel = try orderContainer.decode(String.self, forKey: .stateTaxLabel)
     }
 
 }

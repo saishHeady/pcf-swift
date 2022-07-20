@@ -32,6 +32,8 @@ public struct PCFOrderDetail: OrderDetail, Swift.Decodable {
     public var shipments: [CartShipmentType]
     public var paymentMethods: [PaymentMethodType]
     public var billingAddress: AddressType?
+    public let stateTax: Float?
+    public let stateTaxLabel: String?
 
     fileprivate static func dateFormatter() -> DateFormatter {
         let dateFormatter = PCFDateFormatter.sharedInstance
@@ -64,6 +66,8 @@ public extension PCFOrderDetail {
         case shipments
         case paymentMethods
         case billingAddress
+        case stateTax
+        case stateTaxLabel
     }
 
     init(from decoder: Swift.Decoder) throws {
@@ -101,6 +105,8 @@ public extension PCFOrderDetail {
         shipments = try orderDetailContainer.decodeIfPresent([CartShipmentType].self, forKey: .shipments) ?? []
         paymentMethods = try orderDetailContainer.decodeIfPresent([PaymentMethodType].self, forKey: .paymentMethods) ?? []
         billingAddress = try orderDetailContainer.decodeIfPresent(AddressType.self, forKey: .billingAddress)
+        stateTax = try orderDetailContainer.decode(Float.self, forKey: .stateTax)
+        stateTaxLabel = try orderDetailContainer.decode(String.self, forKey: .stateTaxLabel)
     }
 
 }
