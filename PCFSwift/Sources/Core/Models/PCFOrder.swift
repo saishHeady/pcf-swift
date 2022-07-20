@@ -51,7 +51,7 @@ public struct PCFOrder: Order, Swift.Decodable {
     /// The State tax.
     public let stateTax: Float?
     
-    /// The State 
+    /// The State tax label.
     public let stateTaxLabel: String?
 
     fileprivate static func dateFormatter() -> DateFormatter {
