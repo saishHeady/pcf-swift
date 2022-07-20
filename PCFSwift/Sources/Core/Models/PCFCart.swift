@@ -65,7 +65,7 @@ public struct PCFCart: Cart, Swift.Decodable {
         self.total = total
         self.customerInformation = customerInformation
         self.stateTax = stateTax
-        self.stateTaxLabel = stateLabel
+        self.stateTaxLabel = stateTaxLabel
     }
 
     // MARK: - Protocol conformance
