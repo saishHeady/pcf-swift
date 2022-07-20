@@ -31,6 +31,8 @@ public struct PCFCart: Cart, Swift.Decodable {
     public let totalAdjustment: Float
     public let total: Float?
     public let customerInformation: CustomerInformationType?
+    public let stateTax: Float?
+    public let stateTaxLabel: String?
 
     // MARK: - Init/Deinit
 
@@ -46,7 +48,9 @@ public struct PCFCart: Cart, Swift.Decodable {
                 tax: Float?,
                 totalAdjustment: Float,
                 total: Float?,
-                customerInformation: CustomerInformationType?) {
+                customerInformation: CustomerInformationType?,
+                stateTax: Float?,
+                stateTaxLabel: String?) {
         self.adjustments = adjustments
         self.billingAddress = billingAddress
         self.cartItems = cartItems
@@ -60,6 +64,8 @@ public struct PCFCart: Cart, Swift.Decodable {
         self.totalAdjustment = totalAdjustment
         self.total = total
         self.customerInformation = customerInformation
+        self.stateTax = stateTax
+        self.stateTaxLabel = stateLabel
     }
 
     // MARK: - Protocol conformance
@@ -112,6 +118,8 @@ public extension PCFCart {
         case totalAdjustment
         case total
         case customerInformation
+        case stateTax
+        case stateTaxLabel
     }
 
     init(from decoder: Swift.Decoder) throws {
@@ -130,6 +138,8 @@ public extension PCFCart {
         totalAdjustment = try cartContainer.decode(Float.self, forKey: .totalAdjustment)
         total = try cartContainer.decodeIfPresent(Float.self, forKey: .total)
         customerInformation = try cartContainer.decodeIfPresent(CustomerInformationType.self, forKey: .customerInformation)
+        stateTax = try? cartContainer.decode(Float.self, forKey: .stateTax)
+        stateTaxLabel = try? cartContainer.decode(String.self, forKey: .stateTaxLabel)
     }
 
 }
