@@ -9,7 +9,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "PCFSwift"
-  s.version          = "2.0.0"
+  s.version          = "3.0.0"
   s.summary          = "An iOS library for easy integration with Prolific eCommerce Framework"
 
   s.description      = <<-DESC
@@ -22,7 +22,7 @@ This framework provides protocols and structs to support developers with the imp
   s.source           = { :git => "git@bitbucket.org:prolificinteractive/pcf-swift.git", :tag => s.version.to_s }
 
   s.default_subspec = 'Core'
-  s.ios.deployment_target = '10.0'
+  s.ios.deployment_target = '14.0'
 
   s.subspec 'Core' do |core|
     core.source_files = 'PCFSwift/Sources/Core/**/*'
@@ -40,14 +40,14 @@ This framework provides protocols and structs to support developers with the imp
 
   s.subspec 'Alamofire' do |alamofire|
     alamofire.source_files = 'PCFSwift/Sources/Alamofire/**/*'
-    alamofire.dependency 'Alamofire', '~> 5.0.0-rc.3'
+    alamofire.dependency 'Alamofire', '5.9.0'
     alamofire.dependency 'PCFSwift/Core'
   end
 
   s.subspec 'EnvironmentSwitcher' do |switcher|
     switcher.source_files = 'PCFSwift/Sources/EnvironmentSwitcher/**/*'
     switcher.dependency 'PCFSwift/Core'
-    switcher.dependency 'Yoshi/QAKit', '~> 3.0.0'
+    switcher.dependency 'Yoshi/QAKit'
   end
 
   s.subspec 'GenericValidator' do |validator|
@@ -57,14 +57,14 @@ This framework provides protocols and structs to support developers with the imp
   s.subspec 'KeychainManager' do |keychainManager|
     keychainManager.source_files = 'PCFSwift/Sources/KeychainManager/**/*'
     keychainManager.dependency 'PCFSwift/Core'
-    keychainManager.dependency 'Locksmith', '4.0.0'
+    keychainManager.dependency 'Locksmith'
   end
 
   s.subspec 'KillSwitch' do |killswitch|
     killswitch.source_files = 'PCFSwift/Sources/KillSwitch/**/*'
     killswitch.dependency 'Siren', '5.0.0'
     killswitch.dependency 'PCFSwift/Core'
-    killswitch.dependency 'Bellerophon', '1.2.2'
+    killswitch.dependency 'Bellerophon'
   end
 
   s.subspec 'TouchID' do |touchid|

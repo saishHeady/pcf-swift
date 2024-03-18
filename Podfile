@@ -1,6 +1,6 @@
 use_frameworks!
 podspec :path => 'PCFSwift.podspec'
-platform :ios, '10.0'
+platform :ios, '14.0'
 
 def shared_pods
 	pod 'PCFSwift', :path => './'
@@ -11,7 +11,7 @@ def shared_pods
 	pod 'PCFSwift/EnvironmentSwitcher', :path => './'
 	pod 'PCFSwift/KeychainManager', :path => './'
 	pod 'PCFSwift/KillSwitch', :path => './'
-	pod 'SwiftLint', '0.22.0'
+	pod 'SwiftLint', '0.54.0'
 end
 
 target 'PCFSwift' do
