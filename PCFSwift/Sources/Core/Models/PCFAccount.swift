@@ -7,7 +7,7 @@
 //
 
 /// PCF account default model.
-public struct PCFAccount: Account {
+public struct PCFAccount: Account, Codable {
 
     public let email: String
     public let password: String

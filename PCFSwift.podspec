@@ -9,7 +9,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "PCFSwift"
-  s.version          = "3.0.0"
+  s.version          = "5.0.0"
   s.summary          = "An iOS library for easy integration with Prolific eCommerce Framework"
 
   s.description      = <<-DESC
@@ -47,7 +47,7 @@ This framework provides protocols and structs to support developers with the imp
   s.subspec 'EnvironmentSwitcher' do |switcher|
     switcher.source_files = 'PCFSwift/Sources/EnvironmentSwitcher/**/*'
     switcher.dependency 'PCFSwift/Core'
-    switcher.dependency 'Yoshi/QAKit'
+#    switcher.dependency 'Yoshi/QAKit'
   end
 
   s.subspec 'GenericValidator' do |validator|
@@ -57,12 +57,12 @@ This framework provides protocols and structs to support developers with the imp
   s.subspec 'KeychainManager' do |keychainManager|
     keychainManager.source_files = 'PCFSwift/Sources/KeychainManager/**/*'
     keychainManager.dependency 'PCFSwift/Core'
-    keychainManager.dependency 'Locksmith'
+    keychainManager.dependency 'KeychainAccess', '4.2.2'
   end
 
   s.subspec 'KillSwitch' do |killswitch|
     killswitch.source_files = 'PCFSwift/Sources/KillSwitch/**/*'
-    killswitch.dependency 'Siren', '5.0.0'
+    killswitch.dependency 'Siren', '6.1.2'
     killswitch.dependency 'PCFSwift/Core'
     killswitch.dependency 'Bellerophon'
   end

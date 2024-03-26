@@ -6,7 +6,7 @@
 //  Copyright © 2017 CocoaPods. All rights reserved.
 //
 
-import Locksmith
+import KeychainAccess
 
 private struct KeychainConstants {
 
@@ -17,7 +17,7 @@ private struct KeychainConstants {
     static let passwordKey = "password"
 }
 
-struct KeychainAccount: Account, CreateableSecureStorable, GenericPasswordSecureStorable {
+struct KeychainAccount: Account {
 
     let email: String
     let password: String
@@ -42,30 +42,47 @@ struct KeychainAccount: Account, CreateableSecureStorable, GenericPasswordSecure
 /// Keychain manager.
 public struct KeychainManager: KeychainManageable {
 
-    public init() { }
+    private let keychain: Keychain
+    
+    public init() { 
+        self.keychain = .init(service: KeychainConstants.service).synchronizable(true)
+    }
 
     public func account() -> Account? {
-        let accountDictionary = Locksmith.loadDataForUserAccount(userAccount: KeychainConstants.userAccount,
-                                                                 inService: KeychainConstants.service)
-
-        guard let email = accountDictionary?[KeychainConstants.emailKey] as? String,
-            let password = accountDictionary?[KeychainConstants.passwordKey] as? String else {
+//        let accountDictionary = Locksmith.loadDataForUserAccount(userAccount: KeychainConstants.userAccount,
+//                                                                 inService: KeychainConstants.service)
+        
+        if let account = try? keychain.getString(KeychainConstants.userAccount) {
+            do {
+                let accountData = Data(account.utf8)
+                let decoder = JSONDecoder()
+                
+                return try decoder.decode(PCFAccount.self, from: accountData)
+            } catch {
+                debugPrint(error)
                 return nil
+            }
+        } else {
+            return nil
         }
-
-        return PCFAccount(email: email, password: password)
     }
 
     public func saveAccount(account: Account) throws {
         let keychainAccount = KeychainAccount(account: account)
-        try Locksmith.saveData(data: keychainAccount.data,
-                               forUserAccount: KeychainConstants.userAccount,
-                               inService: KeychainConstants.service)
+//        try Locksmith.saveData(data: keychainAccount.data,
+//                               forUserAccount: KeychainConstants.userAccount,
+//                               inService: KeychainConstants.service)
+        let pcfAccount: PCFAccount = .init(email: account.email, password: account.password)
+        
+        let data = try JSONEncoder().encode(pcfAccount)
+        let jsonString = String(data: data, encoding: .utf8) ?? .init()
+        try? keychain.set(jsonString, key: KeychainConstants.userAccount)
     }
 
     public func removeAccount() throws {
-        try Locksmith.deleteDataForUserAccount(userAccount: KeychainConstants.userAccount,
-                                               inService: KeychainConstants.service)
+//        try Locksmith.deleteDataForUserAccount(userAccount: KeychainConstants.userAccount,
+//                                               inService: KeychainConstants.service)
+        try? keychain.removeAll()
     }
 
 }

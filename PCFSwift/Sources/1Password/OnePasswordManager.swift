@@ -50,7 +50,8 @@ public class OnePasswordManager: CredentialsManager, CredentialsInterfaceDisplay
     }
 
     private func isUserCancelledError(error: NSError) -> Bool {
-        return error.code == Int(AppExtensionErrorCodeCancelledByUser)
+        // In case of any error use this enum case AppExtensionErrorCodeCancelledByUser
+        return error.code == Int(0)
     }
 
     private func userCredentials(fromDictionary loginDictionary: [AnyHashable: Any]) -> (String, String)? {

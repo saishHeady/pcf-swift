@@ -6,6 +6,6 @@
 //  Copyright © 2017 CocoaPods. All rights reserved.
 //
 
-import Yoshi
+//import Yoshi
 
-extension PCFHTTPEnvironment: YoshiEnvironment { }
+//extension PCFHTTPEnvironment: YoshiEnvironment { }

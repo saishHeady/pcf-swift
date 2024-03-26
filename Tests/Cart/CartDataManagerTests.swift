@@ -9,7 +9,7 @@
 import XCTest
 @testable import PCFSwift
 
-// swiftlint:disable file_length
+// swiftlint:disable file_length, type_body_length
 class CartDataManagerTests: BaseTestDataManager {
 
     var validDataManager: CartDataManager<PCFCart, PCFOrderDetail, PCFShippingOption>!
